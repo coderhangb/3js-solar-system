@@ -30,17 +30,17 @@ scene.add(ambientLight);
 const textureLoader = new THREE.TextureLoader();
 
 // Add textures
-const sunTexture = textureLoader.load("./src/assets/2k_sun.jpg");
-const moonTexture = textureLoader.load("./src/assets/2k_moon.jpg");
-const earthTexture = textureLoader.load("./src/assets/2k_earth_daymap.jpg");
-const mercuryTexture = textureLoader.load("./src/assets/2k_mercury.jpg");
-const venusTexture = textureLoader.load("./src/assets/2k_venus_surface.jpg");
-const marsTexture = textureLoader.load("./src/assets/2k_mars.jpg");
-const jupiterTexture = textureLoader.load("./src/assets/2k_jupiter.jpg");
-const saturnTexture = textureLoader.load("./src/assets/2k_saturn.jpg");
-const uranusTexture = textureLoader.load("./src/assets/2k_uranus.jpg");
-const neptuneTexture = textureLoader.load("./src/assets/2k_neptune.jpg");
-textureLoader.load("src/assets/8k_stars_milky_way.jpg", function (texture) {
+const sunTexture = textureLoader.load("/2k_sun.jpg");
+const moonTexture = textureLoader.load("/2k_moon.jpg");
+const earthTexture = textureLoader.load("/2k_earth_daymap.jpg");
+const mercuryTexture = textureLoader.load("/2k_mercury.jpg");
+const venusTexture = textureLoader.load("/2k_venus_surface.jpg");
+const marsTexture = textureLoader.load("/2k_mars.jpg");
+const jupiterTexture = textureLoader.load("/2k_jupiter.jpg");
+const saturnTexture = textureLoader.load("/2k_saturn.jpg");
+const uranusTexture = textureLoader.load("/2k_uranus.jpg");
+const neptuneTexture = textureLoader.load("/2k_neptune.jpg");
+textureLoader.load("/8k_stars_milky_way.jpg", function (texture) {
   scene.background = texture;
 });
 
