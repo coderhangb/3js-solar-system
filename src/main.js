@@ -38,6 +38,7 @@ const venusTexture = textureLoader.load("/2k_venus_surface.jpg");
 const marsTexture = textureLoader.load("/2k_mars.jpg");
 const jupiterTexture = textureLoader.load("/2k_jupiter.jpg");
 const saturnTexture = textureLoader.load("/2k_saturn.jpg");
+const saturnRingTexture = textureLoader.load("/2k_saturn_ring_alpha.png");
 const uranusTexture = textureLoader.load("/2k_uranus.jpg");
 const neptuneTexture = textureLoader.load("/2k_neptune.jpg");
 textureLoader.load("/8k_stars_milky_way.jpg", function (texture) {
@@ -93,6 +94,36 @@ const saturnMaterial = new THREE.MeshStandardMaterial({ map: saturnTexture });
 const saturn = new THREE.Mesh(sphereGeometry, saturnMaterial);
 saturn.scale.setScalar(9);
 saturn.position.x = earthToSunDistance * 9.58;
+saturn.rotation.x = THREE.MathUtils.degToRad(26.7);
+
+// Ring
+const ringGeometry = new THREE.RingGeometry(1.2, 2.5, 128);
+const position = ringGeometry.attributes.position;
+const uv = ringGeometry.attributes.uv;
+
+const innerRadius = 1.2;
+const outerRadius = 2.5;
+
+for (let i = 0; i < position.count; i++) {
+  const x = position.getX(i);
+  const y = position.getY(i);
+
+  const r = Math.sqrt(x * x + y * y);
+
+  const t = (r - innerRadius) / (outerRadius - innerRadius);
+
+  uv.setXY(i, t, 0.5);
+}
+uv.needsUpdate = true;
+
+const ringMaterial = new THREE.MeshStandardMaterial({
+  map: saturnRingTexture,
+  side: THREE.DoubleSide,
+  transparent: true,
+});
+const saturnRing = new THREE.Mesh(ringGeometry, ringMaterial);
+saturnRing.rotation.x = THREE.MathUtils.degToRad(90);
+saturn.add(saturnRing);
 
 // Uranus
 const uranusMaterial = new THREE.MeshStandardMaterial({ map: uranusTexture });
